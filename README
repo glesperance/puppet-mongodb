@@ -31,3 +31,4 @@ Sample Usage :
 - v0.0.4 : Begin support for multiple Ubuntu releases. Added replica set support and README.
 - v0.0.5 : Support for Ubuntu Maverick (10.10).
 - v0.0.6 : Added "python-software-properties" for apt abstraction.
+- v0.0.7 : Support for Ubuntu Natty Narwhal (11.04)

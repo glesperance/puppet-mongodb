@@ -16,5 +16,8 @@ class mongodb::params {
 		"10.10": {
 			$repository="deb http://downloads.mongodb.org/distros/ubuntu 10.10 10gen"
 		}
+		"11.04": {
+		  $repository="deb http://downloads.mongodb.org/distros/ubuntu 11.04 10gen"
+		}
 	}
 }

@@ -42,7 +42,7 @@ class mongodb {
 		require => Exec["10gen-apt-key"],
 	}
 
-	package { "mongodb-stable":
+	package { "mongodb-10gen":
 		ensure => installed,
 		require => Exec["update-apt"],
 	}
@@ -50,7 +50,7 @@ class mongodb {
 	service { "mongodb":
 		enable => true,
 		ensure => running,
-		require => Package["mongodb-stable"],
+		require => Package["mongodb-10gen"],
 	}
 	
 	define replica_set {
@@ -58,7 +58,7 @@ class mongodb {
 			content => template("mongodb/mongodb.conf.erb"),
 			mode => "0644",
 			notify => Service["mongodb"],
-			require => Package["mongodb-stable"],
+			require => Package["mongodb-10gen"],
 		}
 	}
 }
