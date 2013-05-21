@@ -45,9 +45,17 @@ class mongodb(
     require => Exec["10gen-apt-repo"],
   }
 
+  package { 'mongodb':
+    ensure  => purged
+  }
+
+  package { 'mongodb-clients':
+    ensure  => purged
+  }
+
   package { $package:
     ensure => installed,
-    require => Exec["10gen-apt-update"],
+    require => [Exec["10gen-apt-update"], Package['mongodb'], Package['mongodb-clients']]
   }
 
   service { "mongodb":
