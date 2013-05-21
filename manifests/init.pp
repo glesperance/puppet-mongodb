@@ -38,6 +38,13 @@ class mongodb(
     require => Exec["10gen-apt-key"]
   }
 
+  exec { "10gen-apt-update":
+    path => "/bin:/usr/bin",
+    command => "apt-get update",
+    unless => "apt-cache search $package",
+    require => [Exec["10gen-apt-repo"]]
+  }
+
   package { 'mongodb':
     ensure  => purged
   }
@@ -46,16 +53,9 @@ class mongodb(
     ensure  => purged
   }
 
-  exec { "10gen-apt-update":
-    path => "/bin:/usr/bin",
-    command => "apt-get update",
-    unless => "ls /usr/bin | grep mongo",
-    require => [Exec["10gen-apt-repo"], Package['mongodb'], Package['mongodb-clients']]
-  }
-
   package { $package:
     ensure => installed,
-    require => [Exec["10gen-apt-update"]]
+    require => [Exec["10gen-apt-update"], Package['mongodb'], Package['mongodb-clients']]
   }
 
   service { "mongodb":
