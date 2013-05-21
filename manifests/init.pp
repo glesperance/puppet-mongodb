@@ -41,7 +41,7 @@ class mongodb(
   exec { "10gen-apt-update":
     path => "/bin:/usr/bin",
     command => "apt-get update",
-    unless => "apt-cache search $package",
+    unless  => "test \"`apt-cache search mongodb-10gen`\"",
     require => [Exec["10gen-apt-repo"]]
   }
 
