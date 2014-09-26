@@ -14,7 +14,7 @@
 #
 class mongodb::params {
   $repository = "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen"
-  $package = "mongodb-org"
+  $package = "mongodb-10gen"
 
   # Replica set to join
   $replSet = ""
