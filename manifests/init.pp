@@ -62,7 +62,7 @@ class mongodb(
   service { "mongodb":
     enable => true,
     ensure => running,
-    require => Package[$package], Service["mongod"]
+    require => [Package[$package], Service["mongod"]]
   }
 
   file { "/etc/init/mongodb.conf":
