@@ -52,10 +52,17 @@ class mongodb(
     require => [Package['mongodb'], Package['mongodb-clients']]
   }
 
+  # disable default mongod service
+  service { "mongod":
+    enable  => false,
+    ensure  => stopped,
+    require => Package[$package],
+  }
+
   service { "mongodb":
     enable => true,
     ensure => running,
-    require => Package[$package],
+    require => Package[$package], Service["mongod"]
   }
 
   file { "/etc/init/mongodb.conf":
